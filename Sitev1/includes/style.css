@@ -1,10 +1,28 @@
 ﻿body{
-	background-image: url("http://www.media-tchat.org/tchat-media/wp-content/uploads/2014/01/fond-clair1.jpg");
+	background-image: url("pictures/Fond.jpg");
 	background-attachment: fixed;
 	color: black;
 }
 
+#Banderole{
 
+	text-align: center;
+	margin: 1px;
+    justify-content: flex-start;
+    align-items: center;
+}
+.btn{
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+.dicol{
+	display: inline-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 20px;
+}
 .accueil{
 	text-align: center;
 	border: 1px solid black;

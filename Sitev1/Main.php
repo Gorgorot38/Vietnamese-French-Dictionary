@@ -9,24 +9,18 @@
         <?php $current = "main"; include("includes/menu.php");  ?>
         <section class="Recherche">
             <h2>Chercher un mot / Tìm kiếm từ</h2>
-            <form action="search.php"  method="post">
-                <p>
+            <form action="search.php?search='mot'&version=fr"  method="post">
                  <input type="search" name ="mot"/>
-                 <input type="submit" value="Rechercher/Tìm kiếm" /><br />
-                 <label for="langue"> Choix de langue / Ngôn ngữ </label><br />
-                 <select name="langue" id="langue">
-                    <option value="Français -> tiếng Việt">Français -> Tiếng Việt</option>
-                    <option value="tiếng Việt -> Français">Tiếng Việt -> Français</option>
-                 </select>
-                 </p>
+                 <input type="submit" value="Rechercher" />
+                 <label for="langue"> Français -> tiếng Việt </label>
+            </form>
+            <form action="search.php?search='mot'&version=vi"  method="post">
+                 <input type="search" name ="mot"/>
+                 <input type="submit" value="Tìm kiếm" />
+                 <label for="langue"> Tiếng Việt -> Français </label>
             </form>
             <br />
         </section>
-        <section class="Traduction">
-            
-        </section>
-        
-
         <?php include("includes/pied.php"); ?>
     </body>
 </html>

@@ -7,17 +7,20 @@
 		<header class="accueil">
             <h1> Bienvenue / hoan nghênh</h1>
         </header>
+            <div id=Banderole><img src="includes/pictures/DaNang.jpg" alt="DaNang"></div>
         <header>
             <div id="Menu">
+
                 <div id="Menu1">
                     <div class="element<?php if ($current == "main"){ echo ' selected"';} else  {echo '"';};?>><a href="Main.php" class="button" >Accueil<br />Hoan nghênh </a></div>
-                    <div class="element<?php if ($current == "az"){ echo ' selected"';}else  {echo '"';}?>><a href="DicoAZ.php" class="button">Dictionnaire Alphabétique<br />Bảng chữ cái từ điển</a></div>
+                    <div class="element<?php if ($current == "az"){ echo ' selected"';}else  {echo '"';}?>><a href="DicoAZ.php?version=fr&letter=A" class="button">Dictionnaire Alphabétique<br />Bảng chữ cái từ điển</a></div>
                     <div class="element<?php if ($current == "freq"){ echo ' selected"';}else{ echo '"';}?>><a href="DicoFreq.php" class="button">Dictionnaire Frequenciel<br />Tần số từ điển</a></div>
+                    <div class="element<?php if ($current == "bd"){ echo ' selected"';}else{ echo '"';}?>><a href="bd.php" class="button">Database</br></a></div>
                 </div>
                 
                 <div id="Menuleft">
                     <div id="MenuCo">
-                        <div class="element<?php if ($current == "Co"){ echo ' selected"';}else{ echo '"';}?>><a href="Co.php" class="button">Connection</a></div>
+                        <div class="element<?php if ($current == "Co"){ echo ' selected"';}else{ echo '"';}?>><a href="Co.php" class="button">Connection</br></a></div>
                     </div>                    
                     <div id="Menuflag">
                         <div classe="flag fr" class="button"><img src="includes/pictures/fr.gif" alt="fr"><a href="#fr"></a></div>

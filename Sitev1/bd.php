@@ -6,10 +6,7 @@
         <link rel="stylesheet" href="includes/style.css" />
     </head>
     <body>
-        <?php $current = "freq"; include("includes/menu.php");  ?>
-         <ul>
-                    <li><a href="#">top100</a></li>
-            </ul>
+        <?php $current = "bd"; include("includes/menu.php");  ?>
         
         <?php include("includes/pied.php"); ?>
     </body>
