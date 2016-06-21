@@ -4,6 +4,26 @@
 	color: black;
 }
 
+#inscription{
+	border: 1px solid red;
+	margin-top: 10px;
+	margin-right: 100px;	
+	margin-left: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#connection{
+	border: 1px solid red;
+	margin-top: 10px;
+	margin-right: 100px;	
+	margin-left: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 #Banderole{
 
 	text-align: center;
@@ -33,6 +53,10 @@
 .button{
 	font-style: normal;	
 	text-decoration: none;}
+
+.red{
+	color: red;
+}
 
 .selected{
 	margin: ;

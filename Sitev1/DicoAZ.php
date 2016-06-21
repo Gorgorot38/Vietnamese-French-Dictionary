@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="includes/style.css" />
     </head>
     <body>
-        <?php $current = "az"; include("includes/menu.php");  ?>
+        <?php $current = "az"; session_start(); include("includes/menu.php");  ?>
         <section class="dico">
         
         <nav>
@@ -38,13 +38,21 @@
                 if($_GET['version']=='fr'){
                     echo "</br>"."<h3>".$_GET["letter"]."</h3></br></br></br>";
                     $lettre = $_GET['letter'];
-                    $reponse = $bdd->query('SELECT * FROM motFR where FL="'.$lettre.'"' );  
+                    $reponse = $bdd->query('SELECT mot,Description FROM motFR where FL="'.$lettre.'"' );  
                     while ($donnees = $reponse->fetch()){
-                            echo "-".$donnees['mot']." : ".$donnees['Description'].'<br />';
+                            echo "- ".$donnees['mot']." : ".$donnees['Description'].'<br />';
                     }             
                     $reponse->closeCursor(); 
                 }
                 elseif ($_GET['version']=='vi') {
+                    echo "</br>"."<h3>".$_GET["letter"]."</h3></br></br></br>";
+                    $lettre = $_GET['letter'];
+                    $reponse = $bdd->query('SELECT mot,Description FROM motvi where FL="'.$lettre.'"' );  
+                    while ($donnees = $reponse->fetch()){
+                            echo "- ".$donnees['mot']." : ".$donnees['Description'].'<br />';
+                    }             
+                    $reponse->closeCursor(); 
+                
                 }
             ?>
             </div>

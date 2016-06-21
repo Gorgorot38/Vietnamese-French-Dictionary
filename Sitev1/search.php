@@ -26,7 +26,7 @@
             <form action="search.php?search='mot'&version=vi"  method="post">
                  <input type="search" name ="mot"/>
                  <input type="submit" value="Tìm kiếm" />
-                 <label for="langue"> Tiếng Việt -> Français </label>
+                 <label for="langue"> tiếng Việt -> Français </label>
             </form>
         </section>
         <section class="Traduction">
@@ -39,28 +39,34 @@
                     catch (Exception $e){
                         die('Erreur : ' . $e->getMessage());                }   
                 if($_GET['version']=='fr'){
-                    $reponse = $bdd->query('SELECT * FROM motFR');  
-
+                    $reponse = $bdd->query('SELECT * FROM motfr WHERE mot="'.$_POST["mot"].'"');  
+                    $traduction = $bdd->query('SELECT mot FROM simplevi WHERE idV=(SELECT idV FROM tradsimple WHERE idF = (SELECT idF FROM motFR WHERE mot="'.$_POST["mot"].'"))');
                     if ($donnees = $reponse->fetch()){
                         if($donnees['mot'] == $_POST["mot"]){
                             echo "mot : ".$donnees['mot'].'<br />';
                             echo "1ère lettre : ".$donnees['FL'].'<br />';
                             echo "Frequence : ".$donnees['Freq'].'<br />';    
                             echo "Description : ".$donnees['Description'].'<br />';
+                             while ($donneestrad = $traduction->fetch()){
+                            echo "Traduction : ".$donneestrad['mot'].'<br />';
+                            }
                         }   
 
                     }             
                     $reponse->closeCursor(); 
                 }
                 elseif ($_GET['version']=='vi') {
-                    $reponse = $bdd->query('SELECT * FROM simplevi');  
-
+                    $reponse = $bdd->query('SELECT * FROM simplevi WHERE mot="'.$_POST["mot"].'"');  
+                    $traduction = $bdd->query('SELECT mot FROM motfr WHERE idF=(SELECT idF FROM tradsimple WHERE idV = (SELECT idV FROM simplevi WHERE mot="'.$_POST["mot"].'"))');
                     if ($donnees = $reponse->fetch()){
                         if($donnees['mot'] == $_POST["mot"]){
                             echo "mot : ".$donnees['mot'].'<br />';
                             echo "1ère lettre : ".$donnees['FL'].'<br />';
                             echo "Frequence : ".$donnees['Freq'].'<br />';    
                             echo "Description : ".$donnees['Description'].'<br />';
+                             while ($donneestrad = $traduction->fetch()){
+                            echo "Traduction : ".$donneestrad['mot'].'<br />';
+                            }
                         }   
 
                     }             

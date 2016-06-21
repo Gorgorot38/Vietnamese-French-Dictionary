@@ -6,6 +6,10 @@
         </head>
 		<header class="accueil">
             <h1> Bienvenue / hoan nghênh</h1>
+            <?php 
+             if(isset($_SESSION['idU']) && isset($_SESSION['pseudo'])){
+             echo 'Bienvenue '. $_SESSION["pseudo"] . '!';}
+            ?>
         </header>
             <div id=Banderole><img src="includes/pictures/DaNang.jpg" alt="DaNang"></div>
         <header>
@@ -20,7 +24,14 @@
                 
                 <div id="Menuleft">
                     <div id="MenuCo">
-                        <div class="element<?php if ($current == "Co"){ echo ' selected"';}else{ echo '"';}?>><a href="Co.php" class="button">Connection</br></a></div>
+                        <?php
+                        if (isset($_SESSION['idU']) && isset($_SESSION['pseudo'])){
+                            include("includes/Co/Dejaco.php");
+                            }
+                        else{
+                            include("includes/Co/Pasco.php");
+                        }
+                        ?>
                     </div>                    
                     <div id="Menuflag">
                         <div classe="flag fr" class="button"><img src="includes/pictures/fr.gif" alt="fr"><a href="#fr"></a></div>
@@ -28,5 +39,4 @@
                     </div>
                 </div>
             </div>
-            
         </header>
