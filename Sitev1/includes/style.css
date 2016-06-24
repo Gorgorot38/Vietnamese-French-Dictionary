@@ -58,6 +58,14 @@
 	color: red;
 }
 
+.green{
+	color: green;
+}
+
+[required] {
+   border: 2px dotted orange;
+}
+
 .selected{
 	margin: ;
 	text-align: center;

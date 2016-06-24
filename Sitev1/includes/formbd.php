@@ -19,12 +19,16 @@
 <?php
     if(isset($_POST["mot"])&& isset($_POST["pays"])){
         include("includes/recherche.php");
-        if (!($donnees = $reponse->fetch())){
-            echo "Le Mot n'existe pas !";
-            include("entreebd.php");           
+        if(isset($_GET["altertable"])){
         }
         else{
-            include("alterbd.php");
+            if (!($donnees = $reponse->fetch())){
+                echo "Le Mot n'existe pas !";
+                include("entreebd.php");           
+            }
+            else{
+                include("alterbd.php");
+            }
         }
     }
  ?>

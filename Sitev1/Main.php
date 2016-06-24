@@ -32,7 +32,7 @@
                 echo "Description : ".$donnees['Description'].'<br />';
                 while ($donneestrad = $traduction->fetch()){
                     echo "Traduction : ".$donneestrad['mot'].'<br />';
-                            }
+                    }
                           
 
                 }             

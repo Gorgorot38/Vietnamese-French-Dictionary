@@ -15,14 +15,19 @@
             <input type="radio" name="pays" value="vi" id="vi" checked="checked" /> <label for="vi">tiếng Việt -> Français</label> </br>';
             }
             ?>
-            <input type="radio" name="mot" value="mot" id="mot" checked="checked"/> <label for="mot"><?php echo " Mot : ".$_POST['mot'] ?></label> </br>
+            <input type="radio" name="mot" value=<?php echo '"'.$_POST['mot'].'"'?> id=<?php echo '"'.$_POST['mot'].'"'?> checked="checked"/> <label for=<?php echo '"'.$_POST['mot'].'"'?>><?php echo " Mot : ".$_POST['mot'] ?></label> </br>
 
             
             <label for="Description" class="label"> Description </label>
-            <textarea name="Description" id="Description" rows="5" cols="50"><?php if (isset($donnees)){echo $donnees["Description"];} ?>
+            <textarea name="Description" id="Description" rows="5" cols="50"  charset=utf-8 ><?php if (isset($donnees)){echo $donnees["Description"];} ?>
             </textarea></br>
-            <label for="Traduction" class="label"> Traduction : </label>
-            <?php while ($donneestrad = $traduction->fetch()){
+            
+            
+            <?php
+
+            echo '<label for="Traduction" class="label"> Traduction : </label>';
+
+            while ($donneestrad = $traduction->fetch()){
                     echo '<label for="Traduction" class="label"> - '.$donneestrad['mot'].'</label></br>';}
 
             ?>
