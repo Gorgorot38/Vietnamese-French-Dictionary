@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>Dictionnaire Francais/tiếng Việt</title>
         <link rel="stylesheet" href="includes/style.css" />
+        
     </head>
     <body>
         <?php $current = "az"; session_start(); include("includes/menu.php");  ?>
@@ -38,24 +39,36 @@
                 if($_GET['version']=='fr'){
                     echo "</br>"."<h3>".$_GET["letter"]."</h3></br></br></br>";
                     $lettre = $_GET['letter'];
-                    $reponse = $bdd->query('SELECT mot,Description FROM motFR where FL="'.$lettre.'"' );  
+                    $reponse = $bdd->query('SELECT * FROM motFR where FL="'.$lettre.'"' ); 
                     while ($donnees = $reponse->fetch()){
-                            echo "- ".$donnees['mot']." : ".$donnees['Description'].'<br />';
+                            echo "- ".$donnees['mot'] .' : <br />';
+                            $description = $bdd->query('SELECT DISTINCT descriptionfr.Description FROM descriptionfr JOIN motfr ON descriptionfr.idF = (SELECT idF FROM motfr WHERE motfr.mot = "'.$donnees["mot"].'" ) ');
+                             while ($donneesdesc = $description->fetch()){
+                                echo "   ".$donneesdesc['Description'] .' : <br />';
+                             }
+                            
                     }             
                     $reponse->closeCursor(); 
                 }
                 elseif ($_GET['version']=='vi') {
                     echo "</br>"."<h3>".$_GET["letter"]."</h3></br></br></br>";
                     $lettre = $_GET['letter'];
-                    $reponse = $bdd->query('SELECT mot,Description FROM motvi where FL="'.$lettre.'"' );  
+                    $reponse = $bdd->query('SELECT * FROM motvi where FL="'.$lettre.'"' );  
                     while ($donnees = $reponse->fetch()){
-                            echo "- ".$donnees['mot']." : ".$donnees['Description'].'<br />';
+                            echo "- ".$donnees['mot'] .' : <br />';
+                            $description = $bdd->query('SELECT DISTINCT descriptionvi.Description FROM descriptionvi JOIN motvi ON descriptionvi.idV = (SELECT idV FROM motvi WHERE motvi.mot = "'.$donnees["mot"].'" ) ');
+                            while ($donneesdesc = $description->fetch()){
+                                echo "   ".$donneesdesc['Description'] .' : <br />';
+                             }
                     }             
                     $reponse->closeCursor(); 
                 
                 }
             ?>
             </div>
+            
+        </div>
+        
         </div>
         </section>
         <?php

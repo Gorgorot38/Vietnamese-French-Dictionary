@@ -1,5 +1,5 @@
 <form action="bd.php?search=mot&pays=pays"  method="post">
-    <div  id="base de données">
+    <div  id="base_de_données">
         <div>
             <h3>Recherche dans la base de données</h3>
         </div>
@@ -12,6 +12,7 @@
                 <option value="fr">Français -> tiếng Việt</option>
                 <option value="vi">tiếng Việt -> Français</option>
             </select>
+            </br>
         </div>
     </form>
     </div>

@@ -19,28 +19,31 @@
         // Modification du mot
         if(isset($_GET["altertable"])&& ($_GET["altertable"]== 'true')){
 
-
             if($_POST["pays"]=="fr"){
             $req = $bdd->query('SELECT idF from motfr where mot="'.$_POST["mot"].'"');
             $id = $req -> fetch();
             $idF = $id["idF"];            
-            $req->closeCursor(); 
-            $Description = $_POST['Description'];
-            $req = $bdd->prepare('UPDATE motfr SET Description = :Description WHERE idF = :idF');
-            $req->execute(array(
-                'Description' => $_POST['Description'],
-                'idF' => $idF
-            ));
-
             $req->closeCursor();
+            if(!empty(trim($_POST["Description"]))){
+                $Description = $_POST["Description"];
+                $req = $bdd->prepare('INSERT INTO descriptionfr(idF,Description) VALUES(:idF,:Description)');
+                $req->execute(array(
+                    'idF' => $idF,
+                    'Description' => $Description,
+                    ));
+                $req->closeCursor();
+                echo '<p class=green> Nouvelle description prise en compte</p>';
+            }
+            else{
+                echo '<p class=red> Pas de nouvelle description</p>';
+            }
             $Traduction = $_POST['Traduction'];
-            if(!($_POST["Traduction"]=="")){
-                $req = $bdd->prepare('INSERT INTO motvi(FL,Freq,mot,Description) VALUES(:FL,:Freq,:mot,:Description)');
+            if(!empty(trim($_POST['Traduction']))){
+                $req = $bdd->prepare('INSERT INTO motvi(FL,Freq,mot) VALUES(:FL,:Freq,:mot)');
                 $req->execute(array(
                     'FL' => $Traduction[0],
                     'Freq' => 0,
-                    'mot' => $Traduction ,
-                    'Description' => ''
+                    'mot' => $Traduction 
                     ));
                 echo '<p class=green>Nouvelle traduction pour '.$_POST["mot"].' : '.$_POST["Traduction"].'</p>';
                 $req->closeCursor();
@@ -55,9 +58,11 @@
                     'idV' => $idV,
                     ));
                 $req->closeCursor();
+                echo '<p class=green> Nouvelle traduction prise en compte</p>';
             }
-            
-            echo '<p class=green> Les modifications ont été prises en compte !';
+            else{
+                echo '<p class=red> Pas de nouvelle traduction</p>';
+            }
             }
 
 
@@ -65,23 +70,28 @@
             $req = $bdd->query('SELECT idV from motvi where mot="'.$_POST["mot"].'"');
             $id = $req -> fetch();
             $idV = $id["idV"];  
-            $req->closeCursor(); 
-            $Description = $_POST['Description'];
-            $req = $bdd->prepare('UPDATE motvi SET Description = :Description WHERE idV = :idV');
-            $req->execute(array(
-                'Description' => $_POST['Description'],
-                'idV' => $idV
-            ));
-
             $req->closeCursor();
+            if(!empty(trim($_POST["Description"]))){
+                $Description = $_POST["Description"];
+                $req = $bdd->prepare('INSERT INTO descriptionvi(idV,Description) VALUES(:idV,:Description)');
+                $req->execute(array(
+                    'idV' => $idV,
+                    'Description' => $Description,
+                    ));
+                $req->closeCursor();
+               echo '<p class=green> Nouvelle description prise en compte</p>';
+            }
+            else{
+                echo '<p class=red> Pas de nouvelle description</p>';
+            }
+
             $Traduction = $_POST['Traduction'];
-            if(!($_POST["Traduction"]=="")){
-                $req = $bdd->prepare('INSERT INTO motfr(FL,Freq,mot,Description) VALUES(:FL,:Freq,:mot,:Description)');
+            if(!empty(trim($_POST["Traduction"]))){
+                $req = $bdd->prepare('INSERT INTO motfr(FL,Freq,mot) VALUES(:FL,:Freq,:mot)');
                 $req->execute(array(
                     'FL' => $Traduction[0],
                     'Freq' => 0,
-                    'mot' => $Traduction ,
-                    'Description' => ''
+                    'mot' => $Traduction 
                     ));
                 echo '<p class=green>Nouvelle traduction pour '.$_POST["mot"].' : '.$_POST["Traduction"].'</p>';
                 $req->closeCursor();
@@ -97,12 +107,14 @@
                     'idV' => $idV
                     ));
                 $req->closeCursor();
+           echo '<p class=green> Nouvelle traduction prise en compte</p>';
             }
-            
-            echo '<p class=green> Les modifications ont été prises en compte !';
+            else{
+                echo '<p class=red> Pas de nouvelle traduction</p>';
             }
 
         }
+    }
 
         // Entrée d'un nouveau mot
         if(isset($_GET["altertable"])&& ($_GET["altertable"]== 'false')){
@@ -112,24 +124,38 @@
             if($_POST["pays"]=="fr"){
                 $req3 = $bdd->query("SELECT mot from motfr where mot='$mot'");
                 if(!($res = $req3 -> fetch())){
-                $req = $bdd->prepare('INSERT INTO motfr(FL,Freq,mot,Description) VALUES(:FL,:Freq,:mot,:Description)');
+                $req = $bdd->prepare('INSERT INTO motfr(FL,Freq,mot) VALUES(:FL,:Freq,:mot)');
                 $req->execute(array(
                         'FL' => $mot[0],
                         'Freq' => 0,
-                        'mot' => $mot ,
-                        'Description' => $_POST["Description"]
+                        'mot' => $mot 
                         ));
+                $req->closeCursor();
                 echo '<p class=green> Un nouveau mot a été ajouté à la base de données</p>';
+                $req = $bdd->query('SELECT idF from motfr where mot="'.$_POST["mot"].'"');
+                $id = $req -> fetch();
+                $idF = $id["idF"];            
+                $req->closeCursor();
+                $Description = $_POST["Description"];
+                if(!empty(trim($_POST["Description"]))){
+                    $req = $bdd->prepare('INSERT INTO descriptionfr(idF,Description) VALUES(:idF,:Description)');
+                    $req->execute(array(
+                        'idF' => $idF,
+                        'Description' => $Description,
+                        ));
+                    $req->closeCursor();
+                    echo "<p class=green> Un nouvelle Description a été ajouté au mot : ".$_POST["mot"]." !";
+                }
+               
                 
-                if(!($_POST["Traduction"]=="")){
+                if(!empty(trim($_POST["Traduction"]))){
                     $req2 = $bdd->query("SELECT mot from motvi where mot='$Traduction'");
                         if(!($res = $req2 -> fetch())){
-                            $req = $bdd->prepare('INSERT INTO motvi(FL,Freq,mot,Description) VALUES(:FL,:Freq,:mot,:Description)');
+                            $req = $bdd->prepare('INSERT INTO motvi(FL,Freq,mot) VALUES(:FL,:Freq,:mot)');
                             $req->execute(array(
                                 'FL' => $Traduction[0],
                                 'Freq' => 0,
-                                'mot' => $Traduction ,
-                                'Description' => ''
+                                'mot' => $Traduction 
                                 ));
                             echo '<p class=green>Nouvelle traduction pour '.$_POST["mot"].' : '.$_POST["Traduction"].'</p>';
                             $req->closeCursor();
@@ -163,24 +189,37 @@
             if($_POST["pays"]=="vi"){
                 $req3 = $bdd->query("SELECT mot from motvi where mot='$mot'");
                 if(!($res = $req3 -> fetch())){
-                    $req = $bdd->prepare('INSERT INTO motvi(FL,Freq,mot,Description) VALUES(:FL,:Freq,:mot,:Description)');
+                    $req = $bdd->prepare('INSERT INTO motvi(FL,Freq,mot) VALUES(:FL,:Freq,:mot)');
                     $req->execute(array(
                             'FL' => $mot[0],
                             'Freq' => 0,
-                            'mot' => $mot ,
-                            'Description' => $_POST["Description"]
+                            'mot' => $mot 
                             ));
+                    $req->closeCursor();
                     echo '<p class=green> Un nouveau mot a été ajouté à la base de données</p>';
+                    $req = $bdd->query('SELECT idV from motvi where mot="'.$_POST["mot"].'"');
+                    $id = $req -> fetch();
+                    $idV = $id["idV"];            
+                    $req->closeCursor();
+                    $Description = $_POST["Description"];
+                    if(!empty(trim($_POST["Description"]))){
+                        $req = $bdd->prepare('INSERT INTO descriptionv)');
+                        $req->execute(array(
+                            'idV' => $idV,
+                            'Description' => $Description,
+                        ));
+                        $req->closeCursor();
+                    echo "<p class=green> Un nouvelle Description a été ajouté au mot : ".$_POST["mot"]." !";
+                }
                     
-                    if(!($_POST["Traduction"]=="")){
+                    if(!empty(trim($_POST["Traduction"]))){
                         $req2 = $bdd->query("SELECT mot from motfr where mot='$Traduction'");
                         if(!($res = $req2 -> fetch())){
-                            $req = $bdd->prepare('INSERT INTO motfr(FL,Freq,mot,Description) VALUES(:FL,:Freq,:mot,:Description)');
+                            $req = $bdd->prepare('INSERT INTO motfr(FL,Freq,mot) VALUES(:FL,:Freq,:mot)');
                             $req->execute(array(
                                 'FL' => $Traduction[0],
                                 'Freq' => 0,
-                                'mot' => $Traduction ,
-                                'Description' => ''
+                                'mot' => $Traduction 
                                 ));
                             echo '<p class=green>Nouvelle traduction pour '.$_POST["mot"].' : '.$_POST["Traduction"].'</p>';
                             $req->closeCursor();

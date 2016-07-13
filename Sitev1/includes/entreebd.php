@@ -1,7 +1,7 @@
 <?php 
  ?>
 <form action="bd.php?altertable=false&mot=mot&Description=Description&Traduction=Traduction&pays=pays"  method="post">
-    <div  id="base de données">
+    <div  id="base_de_données">
         <div>
             <h3>Entrée d'un nouveau mot dans la base de données</h3>
         </div>
@@ -26,5 +26,6 @@
             <input type="text" name="Traduction" class="champ" />
             </br>
             <input type="submit" value="Valider" />
+            </div>
     </form>
     </div>

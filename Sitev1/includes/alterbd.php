@@ -1,6 +1,6 @@
 
 <form action="bd.php?altertable=true&mot=mot&Description=Description&Traduction=Traduction&pays=pays"  method="post">
-    <div  id="base de données">
+    <div  id="base_de_données">
         <div>
             <h3>Entrée dans la base de données</h3>
         </div>
@@ -17,9 +17,20 @@
             ?>
             <input type="radio" name="mot" value=<?php echo '"'.$_POST['mot'].'"'?> id=<?php echo '"'.$_POST['mot'].'"'?> checked="checked"/> <label for=<?php echo '"'.$_POST['mot'].'"'?>><?php echo " Mot : ".$_POST['mot'] ?></label> </br>
 
-            
-            <label for="Description" class="label"> Description </label>
-            <textarea name="Description" id="Description" rows="5" cols="50"  charset=utf-8 ><?php if (isset($donnees)){echo $donnees["Description"];} ?>
+            <label for="Description" class="label"> Descriptions : </label>
+            <label for="Description" class="label">
+            <?php 
+                while ($donneesdesc = $description->fetch()){
+                    echo '<br /> - '. $donneesdesc["Description"];
+                        }
+             ?>
+            </label>
+
+            </br>
+
+            <label for="Description" class="label"> Nouvelle Description </label>
+
+            <textarea name="Description" id="Description" rows="5" cols="50"  charset=utf-8 > 
             </textarea></br>
             
             
@@ -35,5 +46,6 @@
             <input type="text" name="Traduction" class="champ" />
             </br>
             <input type="submit" value="Valider" />
+            </div>
     </form>
     </div>

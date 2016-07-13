@@ -36,16 +36,6 @@
                   <li><a href="DicoAZ.php?version=vi&letter=v">v</a></li>
                   <li><a href="DicoAZ.php?version=vi&letter=x">x</a></li>
                   <li><a href="DicoAZ.php?version=vi&letter=y">y</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=ch">ch</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=gh">gh</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=gi">gi</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=kh">kh</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=ng">ng</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=ngh">ngh</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=nh">nh</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=ph">ph</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=th">th</a></li>
-                  <li><a href="DicoAZ.php?version=vi&letter=tr">tr</a></li>
             </ul>
 
 </html>
