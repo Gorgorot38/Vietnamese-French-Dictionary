@@ -1,5 +1,5 @@
 <div class = "rec">
-                <div class = "btn0"> <h3><?php echo $_POST["mot"]; ?></h3>
+                <div class = "btn0"> <?php echo $_GET["mot"]; ?>
                 </div>
                 <div class = "btn1">
                 <button class="main_btn" classtype="button" onclick="toggle_div(this,'id_du_div');">Definitions (+)</button>
@@ -23,7 +23,17 @@
                 <div class='btn2'>
                 <?php
                 while ($donneestrad = $traduction->fetch()){
-                    echo $donneestrad['mot'].'<br />';
+                	if($_GET['pays']=='fr'){
+                		$donneesvote = $bdd->query('SELECT idT,traduction.nbPR,traduction.nbPV FROM traduction WHERE traduction.idF="'.$donnees["idF"].'" AND traduction.idV="'.$donneestrad["idV"].'"  ');
+                	}
+                	elseif($_GET['pays']=='vi'){ 
+                		$donneesvote = $bdd->query('SELECT idT,traduction.nbPR,traduction.nbPV FROM traduction WHERE traduction.idV="'.$donnees["idV"].'" AND traduction.idF="'.$donneestrad["idF"].'"  ');
+                	}
+                	$PVPR = $donneesvote -> fetch();           	
+                	echo ' <div class="btn3">';
+                    echo ' <div class="votemot"> - '.$donneestrad['mot'].'</div>';
+                    include("includes/vote.php");
+                    echo '</div>';
                     }
                 ?>
                 </div>
