@@ -24,7 +24,7 @@
         }
         else{
             if (!($donnees = $reponse->fetch())){
-                echo "Le Mot n'existe pas !";
+                echo "<p class='red'>Le Mot n'existe pas !</p>";
                 include("entreebd.php");           
             }
             else{

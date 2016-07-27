@@ -66,15 +66,25 @@
                     $req5->closeCursor();
                     $req5 = $bdd->query('SELECT nbPR FROM traduction WHERE idT="'.$_GET["trad"].'"');
                     $PouceR = $req5 ->fetch();
-                    $PR = $PouceR['nbPR'] + 1 ;
-                    $req5->closeCursor();
-                    $req6 = $bdd->prepare('UPDATE traduction SET nbPR = :nbPR WHERE traduction.idT = :idtrad');
-                    $req6 ->execute(array(
+                    $req4 = $bdd->query('SELECT nbPV FROM traduction WHERE idT="'.$_GET["trad"].'"');
+                    $PouceV = $req4 ->fetch();
+                    if(($PouceV['nbPV'] < ($PouceR['nbPR'] + 1)) && ($PouceV['nbPV']+$PouceR['nbPR']==5)){
+                        $req6 = $bdd->query('DELETE FROM traduction WHERE traduction.idT = "'.$_GET["trad"].'"');
+                        $req6->closeCursor();
+                        $req5->closeCursor();
+                        $req4->closeCursor();
+                    }
+                    else{
+                        $PR = $PouceR['nbPR'] + 1 ;
+                        $req5->closeCursor();
+                        $req4->closeCursor();
+                        $req6 = $bdd->prepare('UPDATE traduction SET nbPR = :nbPR WHERE traduction.idT = :idtrad');
+                        $req6 ->execute(array(
                         'nbPR' => $PR,
                         'idtrad' => $_GET["trad"],
                              ));
-                    $req6->closeCursor();   
-
+                        $req6->closeCursor();   
+                    }
                 }
             }
         }

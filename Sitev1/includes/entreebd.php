@@ -19,7 +19,7 @@
             <input type="radio" name="pays" value="vi" id="vi" checked="checked" /> <label for="vi">tiếng Việt -> Français</label> </br>';
             }
             ?>
-            <label for="Description" class="label"> Description </label>
+            <label for="Description" class="label"> Description : </label>
             <textarea name="Description" id="Description" rows="5" cols="50"><?php if (isset($donnees)){echo $donnees["Description"];} ?>
             </textarea></br>
             <label for="Traduction" class="label"> Traduction : </label>
