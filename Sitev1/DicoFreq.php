@@ -7,6 +7,7 @@
     </head>
     <body>
         <?php $current = "freq"; session_start(); include("includes/menu.php");  ?>
+            <p class="red"> Page en travaux </p>
          <ul>
                     <li><a href="#">top100</a></li>
             </ul>

@@ -273,3 +273,100 @@ footer{
 .vote_dislike:hover{
 	color: red;
 }
+
+.center{
+	display: flex;
+	font-size : 25px;
+	justify-content: center;
+}
+.profil{
+	border-radius: 10px;
+	width: 600px;
+	color : black;
+	font-size: 18px ;
+	display: flex;
+	flex-direction: column;	
+	margin: auto;
+	border-radius: 10px;
+
+}
+.colonne{
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	background-color : #93b8c6;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	margin:auto;
+}
+.img{
+	background-color : white;
+	padding: 10px;
+}
+.ligne{
+	display: flex;
+	justify-content: center;
+	background-color :  #93b8c6;
+	border: 4px groove #094D60 ;
+	padding: auto;
+	border-radius: 10px;
+}
+.enonce{
+	display: flex;
+	justify-content: center;
+	margin : auto;
+}
+.resultat{
+	display: flex;
+	justify-content: center;
+	margin : auto;
+}
+
+.dicoAZ{
+	height: 700px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin-left: 10px;
+	width: 830px;
+	margin-bottom: 20px;
+}
+.dicolettre{
+	display: flex;
+	width : 100%;
+	display-flex: inline-block;
+	background-color :  #93b8c6;
+	border: 3px groove #094D60 ;
+	border-radius: 10px;
+}
+.dicolettremot{
+	display: flex;
+	width : 10%;
+	display-flex: inline-block;
+	background-color :  #4c88a1;
+	border-right: 3px groove #094D60 ;
+	padding: 2px;
+}
+.dicolettredesc{
+	display: flex;
+	padding: 2px;
+	background-color :  #93b8c6;
+	border-right: 3px groove #094D60 ;
+	width : 80%;
+	font-size: 15px;
+}
+.dicolettretrad{
+	display: flex;
+	padding: 2px;
+	display-flex: inline-block;
+	background-color :  #4c88a1;
+	border-right: 6px groove #094D60 ;
+	width : 15%;
+}
+.dicolettrebtn{
+	display: flex;
+	padding-right: 5px;
+	display-flex: inline-block;
+	background-color :  #93b8c6;
+}

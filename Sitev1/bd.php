@@ -212,7 +212,7 @@
                     echo "<p class=green> Un nouvelle Description a été ajouté au mot : ".$_POST["mot"]." !";
                 }
                     
-                    if(!empty(trim($_POST["Traduction"]))){
+                    if(!empty(trim($_POST["Traduction"]))) {
                         $req2 = $bdd->query("SELECT mot from motfr where mot='$Traduction'");
                         if(!($res = $req2 -> fetch())){
                             $req = $bdd->prepare('INSERT INTO motfr(FL,Freq,mot) VALUES(:FL,:Freq,:mot)');
