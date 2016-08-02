@@ -32,7 +32,7 @@
                 <?php if($emailvalide==false){echo '<em class="red"> email non valide </em>';}
                  elseif($emailutilisé==false){echo '<em class="red"> email déjà utilisé </em>';} ?></br>
             </div>
-            <div>
+            <?php /*<div>
                 <label for="captcha">Recopiez le mot : ""</label>
             </div>
             <div>
@@ -40,7 +40,7 @@
             </div>
             <div>               
                 <input type="submit" value="Valider" />
-            </div>
+            </div>*/?>
         </form>
         </div>
         <p class='registered'>

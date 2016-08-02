@@ -13,8 +13,8 @@
             session_destroy();  
 
             // Suppression des cookies de connexion automatique
-            setcookie('login', '');
-            setcookie('pass_hache', ''); }
+            setcookie('pseudo', '');
+            setcookie('idU', ''); }
         include("includes/menu.php");
         ?>
 
@@ -48,10 +48,14 @@
                 $_SESSION['pseudo'] = $pseudo;
                 echo 'Vous êtes connecté '. $_SESSION['pseudo'] .' !';
             }
+            if((isset($_POST['co']))){
+                setcookie('pseudo', $_POST['pseudo'], time() + 100*24*3600, null, null, false, true) ;
+                setcookie('idU', $resultat['idU'], time() + 100*24*3600, null, null, false, true) ;
+            }
         }
         ?>
-
-        <form action="Co.php?pseudo=pseudo&mdp=mdp"  method="post">
+        
+        <form action="Co.php?pseudo=pseudo&mdp=mdp&co=co"  method="post">
         <div  id="connection">
             <div>
                 <h3>Connection</h3>
@@ -61,14 +65,14 @@
                 <input type="text" name="pseudo" class="champ" /></br>
                 <label for="mdp" class="label"> Mot de passe </label>
                 <input type="password" name="mdp" class="champ" /></br>
-                <label for="auto" class="auto"> Connection automatique </label>
-                <input type="checkbox" name="case" /></br>
+                <label for="auto" class="auto"> Rester connecté </label>
+                <input type="checkbox" name="co" for='co' value='co'  /></br>
                 <input type="submit" value="Se connecter" />
+
             </div>
         </form>
         
                 <p><a href="inscri.php">Je ne suis pas inscrit !</a><br/>
-                <a href=#>J'ai oublié mon mot de passe !</a>
             </p>
         </div>
         

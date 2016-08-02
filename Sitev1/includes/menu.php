@@ -7,8 +7,16 @@
 		<header class="accueil">
             <h1> Bienvenue / hoan nghênh</h1>
             <?php 
+
              if(isset($_SESSION['idU']) && isset($_SESSION['pseudo'])){
              echo 'Bienvenue '. $_SESSION["pseudo"] . '!';}
+             else{
+                if(isset($_COOKIE['idU']) && isset($_COOKIE['pseudo'])){
+                    $_SESSION['idU']=$_COOKIE['idU'];
+                    $_SESSION['pseudo']=$_COOKIE['pseudo'];
+                    echo 'Bienvenue '. $_SESSION["pseudo"] . '!';
+                }
+             }
             ?>
         </header>
             <div id=Banderole><img src="includes/pictures/DaNang.jpg" alt="DaNang"></div>

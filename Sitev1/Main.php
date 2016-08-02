@@ -21,6 +21,7 @@
     </head>
     <body>
 
+
         <?php
         try{  
                         $bdd = new PDO('mysql:host=localhost;dbname=frenchvietnamesedictionnary;charset=utf8', 'root', '');
@@ -68,7 +69,7 @@
                     $PouceR = $req5 ->fetch();
                     $req4 = $bdd->query('SELECT nbPV FROM traduction WHERE idT="'.$_GET["trad"].'"');
                     $PouceV = $req4 ->fetch();
-                    if(($PouceV['nbPV'] < ($PouceR['nbPR'] + 1)) && ($PouceV['nbPV']+$PouceR['nbPR']==5)){
+                    if(($PouceV['nbPV'] < ($PouceR['nbPR'] + 1)) && ($PouceV['nbPV']+$PouceR['nbPR']>=5)){
                         $req6 = $bdd->query('DELETE FROM traduction WHERE traduction.idT = "'.$_GET["trad"].'"');
                         $req6->closeCursor();
                         $req5->closeCursor();
